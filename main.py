@@ -9,6 +9,24 @@ import time
 import os
 import io
 from multiprocessing import Process
+from flask import Flask
+from threading import Thread
+
+# Tạo Flask app
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
+
+# Chạy Flask server trên một luồng khác
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
 request_data = {}
 user_processes = {}
 #app = Flask(__name__)
@@ -660,4 +678,5 @@ def key(message):
 apihelper.RETRY_ON_ERROR = True
 
 if __name__ == '__main__':
+    keep_alive()  # Giữ bot chạy liên tục
     bot.polling(none_stop=True, timeout=120)
