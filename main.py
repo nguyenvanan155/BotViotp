@@ -32,7 +32,7 @@ user_processes = {}
 #app = Flask(__name__)
 
 TOKEN = "8056358169:AAHAdMrwlrwgoEYXeP4o2R-IiTo-u3pfTdI"
-ADMIN_NGUYENVANAN = 5201276631 , 2112221324
+ADMIN_LIST = [5201276631, 2112221324]
 
 bot = telebot.TeleBot(TOKEN,threaded=True)
 
@@ -142,7 +142,7 @@ def handle_help(message):
         user_id = message.from_user.id
         if 1==1:
             bot.send_message(message.chat.id, "𝗔𝗹𝗹 𝗖𝗼𝗺𝗺𝗮𝗻𝗱 𝗙𝗼𝗿 𝗩𝗮𝗻An\n--------------------------\n/register:Đăng Ký Dịch Vụ OTP\n/sms {id}: Thuê Số Theo Id\n/find {tên dịch vụ}: Tìm ID Với Tên Dịch Vụ\n/user: Kiểm Tra Tài Khoản\n/topup {Số Tiền Cần Nạp}: Nạp Tiền\n/free Lấy GiftCode Nhận Tiền\n/key: Nhập Code")
-            if user_id == ADMIN_NGUYENVANAN:
+            if user_id == ADMIN_LIST:
                 bot.send_message(message.chat.id, "𝑨𝒅𝒎𝒊𝒏 𝑪𝒐𝒎𝒎𝒂𝒏𝒅\n--------------------------\n/add {user id} {amount}: Add Tiền\n/addtoken {token} add token vafo file token\n/db : BackUp DataBase\nreply/warn: Warn (chưa làm xong)\nreply/ban Ban (chưa làm xong)\n/addcode {code} {amount} {số lượng}: add giftcode nhận xèng (chưa làm xong") 
     except Exception as e:
         print(e)
@@ -202,7 +202,7 @@ def handle_user_command(message):
 @bot.message_handler(commands=['add'])
 def handle_add_command(message):
     user_id = message.from_user.id
-    if user_id == ADMIN_NGUYENVANAN:
+    if user_id == ADMIN_LIST:
         tokens = message.text.split()
         if len(tokens) != 3:
             bot.reply_to(message, "Lệnh không hợp lệ. Sử dụng lệnh theo định dạng: /add {user_id} {số tiền}")
@@ -220,7 +220,7 @@ def handle_add_command(message):
 @bot.message_handler(commands=['db'])
 def handle_add_command(message):
     user_id = message.from_user.id
-    if user_id == ADMIN_NGUYENVANAN:
+    if user_id == ADMIN_LIST:
         try:
             # 
             with open('userdata.db', 'rb') as db_file:
@@ -366,7 +366,7 @@ def handle_find(message):
 
 @bot.message_handler(commands=['addtoken'])
 def add_token(message):
-    if message.from_user.id == ADMIN_NGUYENVANAN:
+    if message.from_user.id == ADMIN_LIST:
            
         new_token = message.text.split(' ', 1)[1].strip()
             
@@ -377,7 +377,7 @@ def add_token(message):
 @bot.message_handler(commands=['tokenbalance'])
 def check_balance_token(message):
     user_id = message.from_user.id
-    if user_id == ADMIN_NGUYENVANAN:
+    if user_id == ADMIN_LIST:
         sent_message = bot.reply_to(message, text='PLS Wait')
         tokens = read_token()
         j = 0
@@ -433,7 +433,7 @@ def handle_sms(message):
         name = chabiettenbien['name']
         price = chabiettenbien['price']
         #
-        if user_id == ADMIN_NGUYENVANAN:
+        if user_id == ADMIN_LIST:
             pass
         else:
             #
@@ -539,7 +539,7 @@ def re_sms(message):
         name = chabiettenbien['name']
         price = chabiettenbien['price']
         #
-        if user_id == ADMIN_NGUYENVANAN:
+        if user_id == ADMIN_LIST:
             pass
         else:
             #
