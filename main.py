@@ -32,7 +32,7 @@ user_processes = {}
 #app = Flask(__name__)
 
 TOKEN = "8056358169:AAHAdMrwlrwgoEYXeP4o2R-IiTo-u3pfTdI"
-ADMIN_NGUYENVANAN = 5201276631
+ADMIN_NGUYENVANAN = 5201276631 , 2112221324
 
 bot = telebot.TeleBot(TOKEN,threaded=True)
 
